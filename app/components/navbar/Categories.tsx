@@ -1,7 +1,8 @@
 'use client';
 
 import { usePathname, useSearchParams } from 'next/navigation';
-import { TbBeach, TbMountain, TbPool } from 'react-icons/tb';
+
+import { TbBeach, TbMountain } from 'react-icons/tb';
 import { 
   GiBarn, 
   GiBoatFishing, 
@@ -10,12 +11,14 @@ import {
   GiCaveEntrance, 
   GiForestCamp, 
   GiIsland,
-  GiWindmill
+  GiWindmill,
+  GiTreehouse
 } from 'react-icons/gi';
-import { FaSkiing } from 'react-icons/fa';
+import { FaSkiing, FaSwimmingPool } from 'react-icons/fa';
 import { BsSnow } from 'react-icons/bs';
 import { IoDiamond } from 'react-icons/io5';
-import { MdOutlineVilla } from 'react-icons/md';
+import { MdOutlineVilla, MdSurfing } from 'react-icons/md';
+import TreeHouses from '../../../public/categories/treehouses.jpg';
 
 import CategoryBox from "../CategoryBox";
 import Container from '../Container';
@@ -30,12 +33,12 @@ export const categories = [
   {
     label: 'Windmills',
     icon: GiWindmill,
-    description: 'This property is has windmills!',
+    description: 'This property is a windmill!',
   },
   {
     label: 'Modern',
     icon: MdOutlineVilla,
-    description: 'This property is modern!'
+    description: 'This property is singularly modern!'
   },
   {
     label: 'Countryside',
@@ -43,8 +46,8 @@ export const categories = [
     description: 'This property is in the countryside!'
   },
   {
-    label: 'Pools',
-    icon: TbPool,
+    label: 'Amazing pools',
+    icon: FaSwimmingPool,
     description: 'This is property has a beautiful pool!'
   },
   {
@@ -63,6 +66,11 @@ export const categories = [
     description: 'This property has skiing activies!'
   },
   {
+    label: 'Surfing',
+    icon: MdSurfing,
+    description: 'This property has surfing activies!'
+  },
+  {
     label: 'Castles',
     icon: GiCastle,
     description: 'This property is an ancient castle!'
@@ -71,6 +79,11 @@ export const categories = [
     label: 'Caves',
     icon: GiCaveEntrance,
     description: 'This property is in a spooky cave!'
+  },
+  {
+    label: 'Treehouses',
+    icon: GiTreehouse,
+    description: 'This property is in an adventurous treehouse!'
   },
   {
     label: 'Camping',

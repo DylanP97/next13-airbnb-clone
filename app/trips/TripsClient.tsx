@@ -39,6 +39,25 @@ const TripsClient: React.FC<TripsClientProps> = ({
     })
   }, [router]);
 
+
+  const isPastDate = (endDate: any) => {
+    const endTimeStamp = new Date(endDate).getTime()
+    const todayTimeStamp = new Date().getTime()
+
+    if (endTimeStamp < todayTimeStamp) return true
+    return false
+  }
+
+  const shouldDisable = (reservation: any) => {
+    if (isPastDate(reservation.endDate)) return true
+    return deletingId === reservation.id
+  }
+
+  const getLabel = (reservation: any) => {
+    if (isPastDate(reservation.endDate)) return "Past trip, we hope you appreciated your stay"
+    return "Cancel reservation"
+  }
+
   return (
     <Container>
       <Heading
@@ -65,8 +84,8 @@ const TripsClient: React.FC<TripsClientProps> = ({
             reservation={reservation}
             actionId={reservation.id}
             onAction={onCancel}
-            disabled={deletingId === reservation.id}
-            actionLabel="Cancel reservation"
+            disabled={shouldDisable(reservation)}
+            actionLabel={getLabel(reservation)}
             currentUser={currentUser}
           />
         ))}
