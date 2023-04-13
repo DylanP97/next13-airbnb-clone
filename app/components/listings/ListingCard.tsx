@@ -15,6 +15,7 @@ import {
 import HeartButton from "../HeartButton";
 import Button from "../Button";
 import ClientOnly from "../ClientOnly";
+import useFormatPrice from "@/app/hooks/useFormatPrice";
 
 interface ListingCardProps {
   data: SafeListing;
@@ -96,6 +97,8 @@ const ListingCard: React.FC<ListingCardProps> = ({
             "
             src={data.imageSrc}
             alt="Listing"
+            sizes="(min-width: 640px) 640px, 100vw"
+            priority={true}
           />
           <div className="
             absolute
@@ -116,7 +119,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
         </div>
         <div className="flex flex-row items-center gap-1">
           <div className="font-semibold">
-            $ {price}
+            {useFormatPrice(price)}
           </div>
           {!reservation && (
             <div className="font-light">night</div>

@@ -4,6 +4,7 @@ import { Range } from "react-date-range";
 
 import Button from "../Button";
 import Calendar from "../inputs/Calendar";
+import useFormatPrice from "@/app/hooks/useFormatPrice";
 
 interface ListingReservationProps {
   price: number;
@@ -39,7 +40,7 @@ const ListingReservation: React.FC<
       <div className="
       flex flex-row items-center gap-1 p-4">
         <div className="text-2xl font-semibold">
-          $ {price}
+          {useFormatPrice(price)}
         </div>
         <div className="font-light text-neutral-600">
           night
@@ -76,7 +77,7 @@ const ListingReservation: React.FC<
           Total
         </div>
         <div>
-          $ {totalPrice}
+          {useFormatPrice(totalPrice)}
         </div>
       </div>
     </div>
