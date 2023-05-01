@@ -2,20 +2,20 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
+import { useMemo } from "react";
 import { format } from 'date-fns';
 
 import useCountries from "@/app/hooks/useCountries";
-import { 
-  SafeListing, 
-  SafeReservation, 
-  SafeUser 
-} from "@/app/types";
+import { SafeListing } from '@/app/types';
+import { SafeReservation } from '@/app/types';
+import { SafeUser } from '@/app/types';
 
 import HeartButton from "../HeartButton";
 import Button from "../Button";
 import ClientOnly from "../ClientOnly";
 import useFormatPrice from "@/app/hooks/useFormatPrice";
+import getUserById from "@/app/actions/getUserById";
 
 interface ListingCardProps {
   data: SafeListing;
@@ -24,7 +24,7 @@ interface ListingCardProps {
   disabled?: boolean;
   actionLabel?: string;
   actionId?: string;
-  currentUser?: SafeUser | null
+  currentUser?: SafeUser | null;
 };
 
 const ListingCard: React.FC<ListingCardProps> = ({
@@ -115,6 +115,13 @@ const ListingCard: React.FC<ListingCardProps> = ({
         </div>
         <div className="font-light text-neutral-500">
           {reservationDate || data.category}
+        </div>
+        <div>
+          {reservation && (
+            <div className="font-light text-neutral-500">
+              Booked by {reservation.userName}
+            </div>
+          )}
         </div>
         <div className="flex flex-row items-center gap-1">
           <div className="font-semibold">

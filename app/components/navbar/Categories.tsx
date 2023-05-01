@@ -1,113 +1,96 @@
 'use client';
 
-import { usePathname, useSearchParams } from 'next/navigation';
-
-import { TbBeach, TbMountain } from 'react-icons/tb';
-import { 
-  GiBarn, 
-  GiBoatFishing, 
-  GiCactus, 
-  GiCastle, 
-  GiCaveEntrance, 
-  GiForestCamp, 
-  GiIsland,
-  GiWindmill,
-  GiTreehouse
-} from 'react-icons/gi';
-import { FaSkiing, FaSwimmingPool } from 'react-icons/fa';
-import { BsSnow } from 'react-icons/bs';
-import { IoDiamond } from 'react-icons/io5';
-import { MdOutlineVilla, MdSurfing } from 'react-icons/md';
-import TreeHouses from '../../../public/categories/treehouses.jpg';
+import { usePathname } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 import CategoryBox from "../CategoryBox";
 import Container from '../Container';
-
+import { categoriesIcons } from '@/public/categories';
 
 export const categories = [
   {
     label: 'Beach',
-    icon: TbBeach,
+    icon: categoriesIcons['beach'],
     description: 'This property is close to the beach!',
   },
   {
     label: 'Windmills',
-    icon: GiWindmill,
+    icon: categoriesIcons['windmills'],
     description: 'This property is a windmill!',
   },
   {
-    label: 'Modern',
-    icon: MdOutlineVilla,
-    description: 'This property is singularly modern!'
+    label: 'Design',
+    icon: categoriesIcons['design'],
+    description: 'This property is singularly designed!'
   },
   {
     label: 'Countryside',
-    icon: TbMountain,
+    icon: categoriesIcons['countryside'],
     description: 'This property is in the countryside!'
   },
   {
     label: 'Amazing pools',
-    icon: FaSwimmingPool,
+    icon: categoriesIcons['amazingpools'],
     description: 'This is property has a beautiful pool!'
   },
   {
     label: 'Islands',
-    icon: GiIsland,
+    icon: categoriesIcons['islands'],
     description: 'This property is on an island!'
   },
   {
     label: 'Lake',
-    icon: GiBoatFishing,
+    icon: categoriesIcons['lake'],
     description: 'This property is near a lake!'
   },
   {
     label: 'Skiing',
-    icon: FaSkiing,
+    icon: categoriesIcons['skiing'],
     description: 'This property has skiing activies!'
   },
   {
     label: 'Surfing',
-    icon: MdSurfing,
+    icon: categoriesIcons['surfing'],
     description: 'This property has surfing activies!'
   },
   {
     label: 'Castles',
-    icon: GiCastle,
+    icon: categoriesIcons['castles'],
     description: 'This property is an ancient castle!'
   },
   {
     label: 'Caves',
-    icon: GiCaveEntrance,
+    icon: categoriesIcons['caves'],
     description: 'This property is in a spooky cave!'
   },
   {
     label: 'Treehouses',
-    icon: GiTreehouse,
+    icon: categoriesIcons['treehouse'],
     description: 'This property is in an adventurous treehouse!'
   },
   {
     label: 'Camping',
-    icon: GiForestCamp,
+    icon: categoriesIcons['camping'],
     description: 'This property offers camping activities!'
   },
   {
     label: 'Arctic',
-    icon: BsSnow,
+    icon: categoriesIcons['arctic'],
     description: 'This property is in arctic environment!'
   },
   {
     label: 'Desert',
-    icon: GiCactus,
+    icon: categoriesIcons['desert'],
     description: 'This property is in the desert!'
   },
   {
     label: 'Barns',
-    icon: GiBarn,
+    icon: categoriesIcons['barns'],
     description: 'This property is in a barn!'
   },
   {
     label: 'Lux',
-    icon: IoDiamond,
+    icon: categoriesIcons['luxe'],
     description: 'This property is brand new and luxurious!'
   }
 ]
@@ -132,6 +115,7 @@ const Categories = () => {
           items-center 
           justify-between
           overflow-x-auto
+          gap-2
         "
       >
         {categories.map((item) => (

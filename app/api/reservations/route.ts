@@ -32,12 +32,13 @@ export async function POST(
       reservations: {
         create: {
           userId: currentUser.id,
+          userName: currentUser.name,
           startDate,
           endDate,
           totalPrice,
         }
-      }
-    }
+      },
+    },
   });
 
   return NextResponse.json(listingAndReservation);

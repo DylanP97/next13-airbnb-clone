@@ -2,11 +2,12 @@
 
 import { useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
-import { BiSearch } from 'react-icons/bi';
 import { differenceInDays } from 'date-fns';
 
 import useSearchModal from '@/app/hooks/useSearchModal';
 import useCountries from '@/app/hooks/useCountries';
+import Image from 'next/image';
+import { interfaceIcons } from '@/public/interface';
 
 const Search = () => {
   const searchModal = useSearchModal();
@@ -117,7 +118,11 @@ const Search = () => {
               text-white
             "
           >
-            <BiSearch size={18} />
+            <Image
+              src={interfaceIcons['search']}
+              alt="search-icon"
+              width={22}
+            />
           </div>
         </div>
       </div>

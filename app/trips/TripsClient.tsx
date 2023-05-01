@@ -2,11 +2,12 @@
 
 import { toast } from "react-hot-toast";
 import axios from "axios";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { SafeReservation, SafeUser } from "@/app/types";
-
+import { SafeReservation } from "@/app/types";
+import { SafeUser } from "@/app/types";
 import Heading from "@/app/components/Heading";
 import Container from "@/app/components/Container";
 import ListingCard from "@/app/components/listings/ListingCard";
@@ -54,7 +55,7 @@ const TripsClient: React.FC<TripsClientProps> = ({
   }
 
   const getLabel = (reservation: any) => {
-    if (isPastDate(reservation.endDate)) return "Past trip, we hope you appreciated your stay"
+    if (isPastDate(reservation.endDate)) return "Past trip, thanks for your stay"
     return "Cancel reservation"
   }
 

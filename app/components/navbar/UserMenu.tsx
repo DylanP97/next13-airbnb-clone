@@ -1,7 +1,8 @@
 'use client';
 
-import { useCallback, useState } from "react";
-import { AiOutlineMenu } from "react-icons/ai";
+import { useCallback } from "react";
+import { useState } from "react";
+
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -12,10 +13,13 @@ import { SafeUser } from "@/app/types";
 
 import MenuItem from "./MenuItem";
 import Avatar from "../Avatar";
+import Image from "next/image";
+import { interfaceIcons } from "@/public/interface";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null
 }
+
 
 const UserMenu: React.FC<UserMenuProps> = ({
   currentUser
@@ -63,7 +67,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
         <div 
         onClick={toggleOpen}
         className="
-          p-4
+          p-2
           md:py-1
           md:px-2
           border-[1px] 
@@ -78,7 +82,12 @@ const UserMenu: React.FC<UserMenuProps> = ({
           transition
           "
         >
-          <AiOutlineMenu />
+          <Image
+            src={interfaceIcons["hamburger"]}
+            alt="menu"
+            width={25}
+            className="opacity-60"
+          />
           <div className="hidden md:block">
             <Avatar src={currentUser?.image} />
           </div>
@@ -111,7 +120,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                   onClick={() => router.push('/favorites')}
                 />
                 <MenuItem 
-                  label="My reservations" 
+                  label="My customers reservations" 
                   onClick={() => router.push('/reservations')}
                 />
                 <MenuItem 

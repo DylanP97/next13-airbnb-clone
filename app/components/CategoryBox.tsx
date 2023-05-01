@@ -1,18 +1,19 @@
 'use client';
 
 import qs from 'query-string';
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useCallback } from "react";
-import { IconType } from "react-icons";
+import Image from 'next/image';
 
 interface CategoryBoxProps {
-  icon: IconType,
+  icon: any,
   label: string;
   selected?: boolean;
 }
 
 const CategoryBox: React.FC<CategoryBoxProps> = ({
-  icon: Icon,
+  icon,
   label,
   selected,
 }) => {
@@ -43,6 +44,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
     router.push(url);
   }, [label, router, params]);
 
+
   return ( 
     <div
       onClick={handleClick}
@@ -51,7 +53,6 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
         flex-col 
         items-center 
         justify-center 
-        gap-2
         p-3
         border-b-2
         hover:text-neutral-800
@@ -61,8 +62,8 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
         ${selected ? 'text-neutral-800' : 'text-neutral-500'}
       `}
     >
-      <Icon size={26} />
-      <div className="font-medium text-sm">
+      <Image className={`${selected ? 'opacity-90' : 'opacity-60'}`} src={icon.src} alt='category-icon' width={30} height={30} />
+      <div className="font-medium mt-[6px] text-center text-sm whitespace-nowrap w-[fit-content] min-w-[50px]">
         {label}
       </div>
     </div>

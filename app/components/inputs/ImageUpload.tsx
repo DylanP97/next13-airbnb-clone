@@ -3,7 +3,7 @@
 import { CldUploadWidget } from "next-cloudinary";
 import Image from "next/image";
 import { useCallback } from "react";
-import { TbPhotoPlus } from 'react-icons/tb'
+import { interfaceIcons } from "@/public/interface";
 
 declare global {
   var cloudinary: any
@@ -53,9 +53,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
               text-neutral-600
             "
           >
-            <TbPhotoPlus
-              size={50}
-            />
+            <Image src={interfaceIcons["addImage"]} alt="add-image" height={25} width={25} />
             <div className="font-semibold text-lg">
               Click to upload
             </div>

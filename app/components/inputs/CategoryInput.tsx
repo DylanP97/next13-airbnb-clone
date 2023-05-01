@@ -1,17 +1,18 @@
 'use client';
 
-import { IconType } from "react-icons";
+import Image from "next/image";
+
 
 interface CategoryBoxProps {
-  icon: IconType,
   label: string;
+  icon: any;
   selected?: boolean;
   onClick: (value: string) => void;
 }
 
 const CategoryBox: React.FC<CategoryBoxProps> = ({
-  icon: Icon,
   label,
+  icon,
   selected,
   onClick
 }) => {
@@ -31,7 +32,13 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
         ${selected ? 'border-black' : 'border-neutral-200'}
       `}
     >
-      <Icon size={30} />
+        <Image
+          src={icon}
+          alt="category-icon"
+          width={28}
+          className="opacity-90"
+        />
+
       <div className="font-semibold">
         {label}
       </div>

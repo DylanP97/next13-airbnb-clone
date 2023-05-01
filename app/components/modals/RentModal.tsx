@@ -2,15 +2,13 @@
 
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import { 
-  FieldValues, 
-  SubmitHandler, 
-  useForm
-} from 'react-hook-form';
+import { FieldValues } from "react-hook-form";
+import { SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation';
-import { useMemo, useState } from "react";
-
+import { useMemo } from "react";
+import { useState } from "react";
 import useRentModal from '@/app/hooks/useRentModal';
 
 import Modal from "./Modal";

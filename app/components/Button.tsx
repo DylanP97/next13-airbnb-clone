@@ -1,6 +1,8 @@
 'use client';
 
-import { IconType } from "react-icons";
+
+import { interfaceIcons } from "@/public/interface";
+import Image from "next/image";
 
 interface ButtonProps {
   label: string;
@@ -8,7 +10,7 @@ interface ButtonProps {
   disabled?: boolean;
   outline?: boolean;
   small?: boolean;
-  icon?: IconType;
+  icon?: any;
 }
 
 const Button: React.FC<ButtonProps> = ({ 
@@ -17,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   disabled, 
   outline,
   small,
-  icon: Icon,
+  icon,
 }) => {
   return ( 
     <button
@@ -40,9 +42,11 @@ const Button: React.FC<ButtonProps> = ({
         ${small ? 'border-[1px]' : 'border-2'}
       `}
     >
-      {Icon && (
-        <Icon
-          size={24}
+      {icon && (
+        <Image
+          src={icon}
+          alt="icon"
+          width={24}
           className="
             absolute
             left-4

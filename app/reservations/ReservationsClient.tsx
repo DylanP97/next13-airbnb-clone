@@ -2,11 +2,12 @@
 
 import { toast } from "react-hot-toast";
 import axios from "axios";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { SafeReservation, SafeUser } from "@/app/types"
-;
+import { SafeReservation } from "@/app/types";
+import { SafeUser } from "@/app/types";
 import Heading from "@/app/components/Heading";
 import Container from "@/app/components/Container";
 import ListingCard from "@/app/components/listings/ListingCard";
@@ -39,11 +40,31 @@ const ReservationsClient: React.FC<ReservationsClientProps> = ({
     })
   }, [router]);
 
+
+  const isPastDate = (endDate: any) => {
+    const endTimeStamp = new Date(endDate).getTime()
+    const todayTimeStamp = new Date().getTime()
+
+    if (endTimeStamp < todayTimeStamp) return true
+    return false
+  }
+
+  const shouldDisable = (reservation: any) => {
+    if (isPastDate(reservation.endDate)) return true
+    return deletingId === reservation.id
+  }
+
+  const getLabel = (reservation: any) => {
+    if (isPastDate(reservation.endDate)) return
+    return "Cancel guest reservation"
+  }
+
+
   return (
     <Container>
       <Heading
-        title="Reservations"
-        subtitle="Bookings on your properties"
+        title="My customers reservations"
+        subtitle={`Here are bookings on your properties ${currentUser?.name}`}
       />
       <div 
         className="
@@ -59,16 +80,16 @@ const ReservationsClient: React.FC<ReservationsClientProps> = ({
         "
       >
         {reservations.map((reservation: any) => (
-          <ListingCard
-            key={reservation.id}
-            data={reservation.listing}
-            reservation={reservation}
-            actionId={reservation.id}
-            onAction={onCancel}
-            disabled={deletingId === reservation.id}
-            actionLabel="Cancel guest reservation"
-            currentUser={currentUser}
-          />
+            <ListingCard
+              key={reservation.id}
+              data={reservation.listing}
+              reservation={reservation}
+              actionId={reservation.id}
+              onAction={onCancel}
+              disabled={shouldDisable(reservation)}
+              actionLabel={getLabel(reservation)}
+              currentUser={currentUser}
+            />
         ))}
       </div>
     </Container>

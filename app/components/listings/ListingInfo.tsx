@@ -1,7 +1,6 @@
 'use client';
 
 import dynamic from "next/dynamic";
-import { IconType } from "react-icons";
 
 import useCountries from "@/app/hooks/useCountries";
 import { SafeUser } from "@/app/types";
@@ -20,9 +19,9 @@ interface ListingInfoProps {
   roomCount: number;
   bathroomCount: number;
   category: {
-    icon: IconType,
     label: string;
     description: string;
+    icon: any;
   } | undefined
   locationValue: string;
 }
@@ -79,7 +78,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       <hr />
       {category && (
         <ListingCategory
-          icon={category.icon} 
+          icon={category.icon}
           label={category?.label}
           description={category?.description} 
         />

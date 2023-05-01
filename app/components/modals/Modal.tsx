@@ -1,9 +1,12 @@
 'use client';
 
-import { useCallback, useEffect, useState } from "react";
-import { IoMdClose } from "react-icons/io";
+import { useCallback } from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 import Button from "../Button";
+import Image from 'next/image';
+import { interfaceIcons } from '@/public/interface';
 
 interface ModalProps {
   isOpen?: boolean;
@@ -144,7 +147,12 @@ const Modal: React.FC<ModalProps> = ({
                   "
                   onClick={handleClose}
                 >
-                  <IoMdClose size={18} />
+                  {/* <IoMdClose size={18} /> */}
+                  <Image
+                    src={interfaceIcons['close']}
+                    alt="close-icon"
+                    width={18}
+                  />
                 </button>
                 <div className="text-lg font-semibold">
                   {title}

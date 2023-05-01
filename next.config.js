@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+module.exports = withBundleAnalyzer({
   experimental: {
     appDir: true,
   },
@@ -9,7 +12,5 @@ const nextConfig = {
       'avatars.githubusercontent.com',
       'lh3.googleusercontent.com'
     ]
-  }
-}
-
-module.exports = nextConfig
+  },
+})
