@@ -17,6 +17,9 @@ import Arctic from './arctic.jpg';
 import Desert from './deserts.jpg';
 import Barns from './barns.jpg';
 import Luxe from './luxe.jpg';
+import AmazingViews from './amazingviews.jpg';
+import BeachFront from './beachfront.jpg';
+import Boats from './boats.jpg';
 
 export const categoriesIcons = {
     'treehouse' : TreeHouse,
@@ -35,5 +38,8 @@ export const categoriesIcons = {
     'arctic' : Arctic,
     'desert' : Desert,
     'barns' : Barns,
-    'luxe' : Luxe
+    'luxe' : Luxe,
+    'amazingviews' : AmazingViews,
+    'beachfront' : BeachFront,
+    'boats' : Boats,
 };

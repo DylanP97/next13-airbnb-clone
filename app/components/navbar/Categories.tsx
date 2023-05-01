@@ -92,6 +92,21 @@ export const categories = [
     label: 'Lux',
     icon: categoriesIcons['luxe'],
     description: 'This property is brand new and luxurious!'
+  },
+  {
+    label: 'Amazing views',
+    icon: categoriesIcons['amazingviews'],
+    description: 'This property has amazing views!'
+  },
+  {
+    label: 'Beach front',
+    icon: categoriesIcons['beachfront'],
+    description: 'This property is in front of a beach!'
+  },
+  {
+    label: 'Boats',
+    icon: categoriesIcons['boats'],
+    description: 'This property is on a boat!'
   }
 ]
 
