@@ -6,7 +6,6 @@ import { useCallback } from "react";
 import { useMemo } from "react";
 import { useState } from "react";
 import { Range } from 'react-date-range';
-import { formatISO } from 'date-fns';
 import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
 import useSearchModal from "@/app/hooks/useSearchModal";
@@ -18,6 +17,7 @@ import CountrySelect, {
   CountrySelectValue
 } from "../inputs/CountrySelect";
 import Heading from '../Heading';
+import { formatISODate } from '@/app/libs/utils';
 
 enum STEPS {
   LOCATION = 0,
@@ -41,6 +41,7 @@ const SearchModal = () => {
     endDate: new Date(),
     key: 'selection'
   });
+
 
   const Map = useMemo(() => dynamic(() => import('../Map'), { 
     ssr: false 
@@ -74,11 +75,11 @@ const SearchModal = () => {
     };
 
     if (dateRange.startDate) {
-      updatedQuery.startDate = formatISO(dateRange.startDate);
+      updatedQuery.startDate = formatISODate(dateRange.startDate);
     }
 
     if (dateRange.endDate) {
-      updatedQuery.endDate = formatISO(dateRange.endDate);
+      updatedQuery.endDate = formatISODate(dateRange.endDate);
     }
 
     const url = qs.stringifyUrl({

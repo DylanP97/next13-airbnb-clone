@@ -8,7 +8,6 @@ import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { Range } from 'react-date-range';
 import { useRouter } from 'next/navigation';
-import { differenceInDays, eachDayOfInterval } from 'date-fns';
 
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { SafeListing } from '@/app/types';
@@ -43,11 +42,26 @@ const ListingClient: React.FC<ListingClientProps> = ({
   const loginModal = useLoginModal();
   const router = useRouter();
 
+  function eachDayOfIntervalCustom(interval: { start: string | number | Date; end: string | number | Date; }) {
+    const start = new Date(interval.start);
+    const end = new Date(interval.end);
+    const days = [];
+    let currentDate = new Date(start);
+  
+    while (currentDate <= end) {
+      days.push(new Date(currentDate));
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+  
+    return days;
+  }
+  
+
   const disabledDates = useMemo(() => {
     let dates: Date[] = [];
 
     reservations.forEach((reservation: any) => {
-      const range = eachDayOfInterval({
+      const range = eachDayOfIntervalCustom({
         start: new Date(reservation.startDate),
         end: new Date(reservation.endDate)
       });
@@ -66,6 +80,11 @@ const ListingClient: React.FC<ListingClientProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(listing.price);
   const [dateRange, setDateRange] = useState<Range>(initialDateRange);
+
+  function differenceInDays(startDate: number, endDate: number) {
+    const diffInMs = endDate - startDate;
+    return Math.round(diffInMs / (1000 * 60 * 60 * 24));
+  }  
 
   const onCreateReservation = useCallback(() => {
       if (!currentUser) {
@@ -103,8 +122,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
   useEffect(() => {
     if (dateRange.startDate && dateRange.endDate) {
       const dayCount = differenceInDays(
-        dateRange.endDate, 
-        dateRange.startDate
+        dateRange.startDate.getTime(),
+        dateRange.endDate.getTime()
       );
       
       if (dayCount && listing.price) {

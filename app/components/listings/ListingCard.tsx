@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { useMemo } from "react";
-import { format } from 'date-fns';
 
 import useCountries from "@/app/hooks/useCountries";
 import { SafeListing } from '@/app/types';
@@ -66,8 +65,13 @@ const ListingCard: React.FC<ListingCardProps> = ({
   
     const start = new Date(reservation.startDate);
     const end = new Date(reservation.endDate);
-
-    return `${format(start, 'PP')} - ${format(end, 'PP')}`;
+  
+    const formatMonth = (date: any) => {
+      const month = date.toLocaleString('default', { month: 'long' });
+      return month.slice(0, 3);
+    }
+  
+    return `${start.getDate()} ${formatMonth(start)} - ${end.getDate()} ${formatMonth(end)}`;
   }, [reservation]);
 
   return (

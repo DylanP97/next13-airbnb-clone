@@ -2,7 +2,6 @@
 
 import { useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
-import { differenceInDays } from 'date-fns';
 
 import useSearchModal from '@/app/hooks/useSearchModal';
 import useCountries from '@/app/hooks/useCountries';
@@ -27,12 +26,17 @@ const Search = () => {
     return 'Anywhere';
   }, [locationValue, getByValue]);
 
+  function differenceInDays(startDate: number, endDate: number) {
+    const diffInMs = endDate - startDate;
+    return Math.round(diffInMs / (1000 * 60 * 60 * 24));
+  }  
+
   const durationLabel = useMemo(() => {
     if (startDate && endDate) {
       const start = new Date(startDate as string);
       const end = new Date(endDate as string);
-      let diff = differenceInDays(end, start);
-
+      let diff = differenceInDays(start.getTime(), end.getTime());
+      
       if (diff === 0) {
         diff = 1;
       }

@@ -16,8 +16,6 @@ const CategoryView: React.FC<CategoryViewProps> = ({
   description
  }) => {
 
-  console.log(icon)
-
   return ( 
     <div className="flex flex-col gap-6">
       <div className="flex flex-row items-center gap-4">
