@@ -34,7 +34,7 @@ export async function POST(
       reservations: {
         create: {
           userId: currentUser.id,
-          userName: currentUser.name ? currentUser.name : null,
+          userName: currentUser.name ? currentUser.name : "",
           startDate,
           endDate,
           totalPrice,
