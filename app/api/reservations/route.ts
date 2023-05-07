@@ -24,6 +24,8 @@ export async function POST(
     return NextResponse.error();
   }
 
+  const userName = currentUser.name ?? "Anonymous";
+
   const listingAndReservation = await prisma.listing.update({
     where: {
       id: listingId
@@ -32,7 +34,7 @@ export async function POST(
       reservations: {
         create: {
           userId: currentUser.id,
-          userName: currentUser.name,
+          userName: userName,
           startDate,
           endDate,
           totalPrice,
