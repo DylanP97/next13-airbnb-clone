@@ -12,8 +12,6 @@ export async function POST(
     return NextResponse.error();
   }
 
-  console.log(currentUser.name)
-
   const body = await request.json();
   const { 
     listingId,
@@ -34,7 +32,7 @@ export async function POST(
       reservations: {
         create: {
           userId: currentUser.id,
-          userName: currentUser.name ? currentUser.name : null,
+          userName: currentUser.name,
           startDate,
           endDate,
           totalPrice,

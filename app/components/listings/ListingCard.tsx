@@ -62,6 +62,8 @@ const ListingCard: React.FC<ListingCardProps> = ({
     if (!reservation) {
       return null;
     }
+
+    // const user = getUserById(reservation.userId);
   
     const start = new Date(reservation.startDate);
     const end = new Date(reservation.endDate);
@@ -73,6 +75,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
   
     return `${start.getDate()} ${formatMonth(start)} - ${end.getDate()} ${formatMonth(end)}`;
   }, [reservation]);
+
 
   return (
     <div 
